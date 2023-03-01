@@ -64,9 +64,9 @@ jobs:
           
       - name: Custom Tag
         id: tag_version
-        uses: anothrNick/github-tag-action@1.36.0
-        env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: Klemensas/action-autotag@stable
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       - name: Build and push
         id: docker_build
