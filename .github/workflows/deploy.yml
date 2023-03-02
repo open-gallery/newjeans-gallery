@@ -45,9 +45,6 @@ jobs:
         
       - name: 시간 추출
         run: echo "TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
-        
-      - name: ...
-        run: echo $TIME
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -68,7 +65,7 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags:  ${{ secrets.DOCKER_HUB_USERNAME }}/open-gallery:$TIME
+          tags:  ${{ secrets.DOCKER_HUB_USERNAME }}/open-gallery:${{ env.TIME }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
 
