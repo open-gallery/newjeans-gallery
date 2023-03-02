@@ -44,7 +44,7 @@ jobs:
         run: ./gradlew build -x test
         
       - name: 버전 추출
-        run: echo "PRJ_VERSION=$(grep prj-version ./gradle.properties | cut -d'=' -f2)" >> $GITHUB_ENV
+        run: echo "PRJ_VERSION=$(grep prj_version ./gradle.properties | cut -d'=' -f2)" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
