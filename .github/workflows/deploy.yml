@@ -44,7 +44,7 @@ jobs:
         run: ./gradlew build -x test
         
       - name: 시간 추출
-        run: echo "VER=$(./gradle printVersion)" >> $GITHUB_ENV
+        run: echo "VER=$(grep prj-version ./gradle.properties | cut -d'=' -f2)" >> $GITHUB_ENV
 
       - name: ...
         run: echo $VER
