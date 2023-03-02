@@ -43,8 +43,11 @@ jobs:
       - name: 빌드
         run: ./gradlew build -x test
         
-      - name: JAR 버전 변수 추출
-        run: gradle printVersion
+      - name: 시간 추출
+        run: echo "TIME=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+        
+      - name: ...
+        run: echo $TIME
 
 #       - name: Set up QEMU
 #         uses: docker/setup-qemu-action@v2
