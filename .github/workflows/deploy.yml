@@ -44,7 +44,7 @@ jobs:
         run: ./gradlew build -x test
         
       - name: JAR 버전 변수 추출
-        run: ./gradle printVersion
+        run: gradle printVersion
 
 #       - name: Set up QEMU
 #         uses: docker/setup-qemu-action@v2
