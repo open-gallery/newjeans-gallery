@@ -21,13 +21,12 @@ import open.gallery.newjeans.common.BaseEntity;
 @AllArgsConstructor(access = PRIVATE)
 @NoArgsConstructor(access = PROTECTED)
 @Entity
-@Table(
-    name = "MEMBER_LIKE_MAP",
+@Table(name = "MEMBER_UPLOAD_MAP",
     indexes = {
         @Index(name = "idx_image_id", columnList = "IMAGE_ID")
     }
 )
-public class MemberLikeMap extends BaseEntity {
+public class MemberUploadMap extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,10 +39,14 @@ public class MemberLikeMap extends BaseEntity {
   @Column(name = "IMAGE_ID", nullable = false)
   private Long imageId;
 
-  public static MemberLikeMap of(Member member, Long imageId) {
-    return MemberLikeMap.builder()
+  @Column(name = "PENDING", nullable = false, columnDefinition = "boolean default true")
+  private Boolean pending;
+
+  public static MemberUploadMap of(Member member, Long imageId) {
+    return MemberUploadMap.builder()
         .member(member)
         .imageId(imageId)
+        .pending(true)
         .build();
   }
 
@@ -55,7 +58,7 @@ public class MemberLikeMap extends BaseEntity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MemberLikeMap that = (MemberLikeMap) o;
+    MemberUploadMap that = (MemberUploadMap) o;
     return Objects.equals(member, that.member) && Objects.equals(imageId, that.imageId);
   }
 
