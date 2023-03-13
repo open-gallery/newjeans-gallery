@@ -1,42 +1,46 @@
-package open.gallery.newjeans.image.domain;
+package open.gallery.newjeans.gallery.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import open.gallery.newjeans.common.BaseEntity;
 
 @Builder(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
 @NoArgsConstructor(access = PROTECTED)
 @Entity
 @Getter
-@Table(name = "GALLERIES")
-public class Gallery {
+@Table(
+    name = "TAGS"
+)
+public class Tag extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = IDENTITY)
   @Column(name = "ID", nullable = false)
   private Long id;
 
   @Column(name = "NAME", nullable = false)
   private String name;
 
-  @Column(name = "URL", nullable = false)
-  private String url;
+  @ManyToOne
+  private Gallery gallery;
 
-  public static Gallery of(String name, String url) {
-    return Gallery.builder()
+  public static Tag of(String name, Gallery gallery) {
+    return Tag.builder()
         .name(name)
-        .url(url)
+        .gallery(gallery)
         .build();
   }
 }

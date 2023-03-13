@@ -1,4 +1,4 @@
-package open.gallery.newjeans.image.domain;
+package open.gallery.newjeans.gallery.domain;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
@@ -9,12 +9,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Index;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import open.gallery.newjeans.common.BaseEntity;
 
 @Builder(access = PRIVATE)
@@ -23,30 +23,35 @@ import open.gallery.newjeans.common.BaseEntity;
 @Entity
 @Getter
 @Table(
-    name = "IMAGE_TAG_MAPS",
+    name = "IMAGES",
     indexes = {
-        @Index(name = "idx_image_id", columnList = "IMAGE_ID"),
-        @Index(name = "idx_tag_id", columnList = "TAG_ID")
+        @Index(name = "idx_uploader_id", columnList = "UPLOADER_ID")
     }
 )
-@ToString
-public class ImageTagMap extends BaseEntity {
+public class Image extends BaseEntity {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "ID", nullable = false)
   private Long id;
 
-  @Column(name = "IMAGE_ID", nullable = false)
-  private Long imageId;
+  @Column(name = "URL", nullable = false)
+  private String url;
 
-  @Column(name = "TAG_ID", nullable = false)
-  private Long tagId;
+  @Column(name = "UPLOADER_ID", nullable = false)
+  private Long uploaderId;
 
-  public static ImageTagMap of(Long imageId, Long tagId) {
-    return ImageTagMap.builder()
-        .imageId(imageId)
-        .tagId(tagId)
+  @Column(name = "LIKE_COUNT", columnDefinition = "bigint default 0")
+  private Long likeCount;
+
+  @ManyToOne
+  private Gallery gallery;
+
+  public static Image of(String url, Long uploaderId, Gallery gallery) {
+    return Image.builder()
+        .url(url)
+        .uploaderId(uploaderId)
+        .gallery(gallery)
         .build();
   }
 }

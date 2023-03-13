@@ -35,7 +35,7 @@ public class Member extends BaseEntity {
 
   @OneToMany(
       mappedBy = "member",
-      cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+      cascade = CascadeType.ALL,
       orphanRemoval = true
   )
   @BatchSize(size = 100)
@@ -44,7 +44,7 @@ public class Member extends BaseEntity {
 
   @OneToMany(
       mappedBy = "member",
-      cascade = {CascadeType.PERSIST, CascadeType.REMOVE},
+      cascade = CascadeType.ALL,
       orphanRemoval = true
   )
   @BatchSize(size = 100)
