@@ -30,4 +30,11 @@ public class Gallery {
   private String name;
 
   private String url;
+
+  public static Gallery of(String name, String url) {
+    return Gallery.builder()
+        .name(name)
+        .url(url)
+        .build();
+  }
 }

@@ -1,18 +1,17 @@
 package open.gallery.newjeans.image.domain;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Index;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import open.gallery.newjeans.common.BaseEntity;
@@ -21,25 +20,30 @@ import open.gallery.newjeans.common.BaseEntity;
 @AllArgsConstructor(access = PRIVATE)
 @NoArgsConstructor(access = PROTECTED)
 @Entity
-@Table(name = "TAGS")
 @Getter
+@Table(
+    name = "TAGS",
+    indexes = {
+        @Index(name = "idx_gallery_id", columnList = "GALLERY_ID")
+    }
+)
 public class Tag extends BaseEntity {
 
   @Id
-  @Column(name = "NAME", nullable = false, length = 10)
+  @GeneratedValue(strategy = IDENTITY)
+  @Column(name = "ID", nullable = false)
+  private Long id;
+
+  @Column(name = "NAME", nullable = false)
   private String name;
 
-  @Default
-  @OneToMany(mappedBy = "tag")
-  private List<ImageTagMap> imageTagMaps = new ArrayList<>();
+  @Column(name = "GALLERY_ID", nullable = false)
+  private Long galleryId;
 
-  public void addImageTagMaps(ImageTagMap imageTagMap) {
-    imageTagMaps.add(imageTagMap);
-  }
-
-  public static Tag from(String name) {
+  public static Tag of(String name, Long galleryId) {
     return Tag.builder()
         .name(name)
+        .galleryId(galleryId)
         .build();
   }
 }

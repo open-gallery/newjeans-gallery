@@ -8,27 +8,28 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.Index;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import open.gallery.newjeans.common.BaseEntity;
 
 @Builder(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
 @NoArgsConstructor(access = PROTECTED)
 @Entity
+@Getter
 @Table(
     name = "IMAGE_TAG_MAPS",
-    uniqueConstraints = {
-        @UniqueConstraint(
-            name = "primaryImageTag",
-            columnNames = {"IMAGE_ID", "TAG_NAME"}
-        )
+    indexes = {
+        @Index(name = "idx_image_id", columnList = "IMAGE_ID"),
+        @Index(name = "idx_tag_id", columnList = "TAG_ID")
     }
 )
+@ToString
 public class ImageTagMap extends BaseEntity {
 
   @Id
@@ -36,16 +37,16 @@ public class ImageTagMap extends BaseEntity {
   @Column(name = "ID", nullable = false)
   private Long id;
 
-  @ManyToOne
-  private Image image;
+  @Column(name = "IMAGE_ID", nullable = false)
+  private Long imageId;
 
-  @ManyToOne
-  private Tag tag;
+  @Column(name = "TAG_ID", nullable = false)
+  private Long tagId;
 
-  public static ImageTagMap of(Image image, Tag tag) {
+  public static ImageTagMap of(Long imageId, Long tagId) {
     return ImageTagMap.builder()
-        .image(image)
-        .tag(tag)
+        .imageId(imageId)
+        .tagId(tagId)
         .build();
   }
 }

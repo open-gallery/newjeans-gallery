@@ -4,6 +4,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
 
+import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -38,7 +39,8 @@ public class Member extends BaseEntity {
       orphanRemoval = true
   )
   @BatchSize(size = 100)
-  private Set<MemberLikeMap> memberLikeMaps;
+  @Builder.Default
+  private Set<MemberLikeMap> memberLikeMaps = new HashSet<>();
 
   @OneToMany(
       mappedBy = "member",
@@ -46,7 +48,8 @@ public class Member extends BaseEntity {
       orphanRemoval = true
   )
   @BatchSize(size = 100)
-  private Set<MemberUploadMap> memberUploadMaps;
+  @Builder.Default
+  private Set<MemberUploadMap> memberUploadMaps = new HashSet<>();
 
   void addLikeMap(Long imageId) {
     memberLikeMaps.add(MemberLikeMap.of(this, imageId));
