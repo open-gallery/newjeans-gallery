@@ -1,4 +1,4 @@
-package open.gallery.newjeans.gallery.domain;
+package open.gallery.newjeans.image.domain;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;

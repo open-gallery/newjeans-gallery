@@ -1,6 +1,6 @@
-package open.gallery.newjeans.gallery.repository;
+package open.gallery.newjeans.image.repository;
 
-import open.gallery.newjeans.gallery.domain.Tag;
+import open.gallery.newjeans.image.domain.Tag;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TagRepository extends JpaRepository<Tag, String> {

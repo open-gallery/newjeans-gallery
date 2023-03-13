@@ -1,4 +1,4 @@
-package open.gallery.newjeans.gallery.domain;
+package open.gallery.newjeans.image.domain;
 
 public enum Gallery {
 

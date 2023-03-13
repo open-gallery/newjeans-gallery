@@ -1,6 +1,6 @@
-package open.gallery.newjeans.gallery.repository;
+package open.gallery.newjeans.image.repository;
 
-import open.gallery.newjeans.gallery.domain.Image;
+import open.gallery.newjeans.image.domain.Image;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
