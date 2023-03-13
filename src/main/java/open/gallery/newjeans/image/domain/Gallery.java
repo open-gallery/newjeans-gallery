@@ -27,8 +27,10 @@ public class Gallery {
   @Column(name = "ID", nullable = false)
   private Long id;
 
+  @Column(name = "NAME", nullable = false)
   private String name;
 
+  @Column(name = "URL", nullable = false)
   private String url;
 
   public static Gallery of(String name, String url) {
