@@ -21,7 +21,7 @@ import open.gallery.newjeans.common.BaseEntity;
 @NoArgsConstructor(access = PROTECTED)
 @Entity
 @Table(
-    name = "IMAGE_TAG_MAP",
+    name = "IMAGE_TAG_MAPS",
     uniqueConstraints = {
         @UniqueConstraint(
             name = "primaryImageTag",

@@ -22,7 +22,7 @@ import open.gallery.newjeans.common.BaseEntity;
 @NoArgsConstructor(access = PROTECTED)
 @Entity
 @Table(
-    name = "MEMBER_LIKE_MAP",
+    name = "MEMBER_LIKE_MAPS",
     indexes = {
         @Index(name = "idx_image_id", columnList = "IMAGE_ID")
     }

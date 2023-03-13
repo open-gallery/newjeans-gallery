@@ -8,8 +8,6 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -51,9 +49,8 @@ public class Image extends BaseEntity {
   @Column(name = "LIKE_COUNT", columnDefinition = "bigint default 0")
   private Long likeCount;
 
-  @Enumerated(value = EnumType.ORDINAL)
   @Column(name = "GALLERY_ID", nullable = false)
-  private Gallery gallery;
+  private Long galleryId;
 
   @Default
   @OneToMany(
@@ -67,11 +64,11 @@ public class Image extends BaseEntity {
     imageTagMaps.add(imageTagMap);
   }
 
-  public static Image from(String url, Long uploaderId, Gallery gallery) {
+  public static Image from(String url, Long uploaderId, Long galleryId) {
     return Image.builder()
         .url(url)
         .uploaderId(uploaderId)
-        .gallery(gallery)
+        .galleryId(galleryId)
         .build();
   }
 }

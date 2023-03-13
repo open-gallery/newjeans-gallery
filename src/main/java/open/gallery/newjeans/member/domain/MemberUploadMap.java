@@ -21,7 +21,7 @@ import open.gallery.newjeans.common.BaseEntity;
 @AllArgsConstructor(access = PRIVATE)
 @NoArgsConstructor(access = PROTECTED)
 @Entity
-@Table(name = "MEMBER_UPLOAD_MAP",
+@Table(name = "MEMBER_UPLOAD_MAPS",
     indexes = {
         @Index(name = "idx_image_id", columnList = "IMAGE_ID")
     }
