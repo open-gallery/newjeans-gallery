@@ -1,4 +1,4 @@
-package open.gallery.newjeans.gallery.domain;
+package open.gallery.newjeans.image.domain;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
@@ -15,6 +15,7 @@ import lombok.Builder;
 import lombok.Builder.Default;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import open.gallery.newjeans.common.BaseEntity;
 
 @Builder(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "TAGS")
 @Getter
-public class Tag {
+public class Tag extends BaseEntity {
 
   @Id
   @Column(name = "NAME", nullable = false, length = 10)

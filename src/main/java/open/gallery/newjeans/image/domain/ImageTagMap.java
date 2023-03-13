@@ -1,4 +1,4 @@
-package open.gallery.newjeans.gallery.domain;
+package open.gallery.newjeans.image.domain;
 
 import static lombok.AccessLevel.PRIVATE;
 import static lombok.AccessLevel.PROTECTED;
@@ -14,6 +14,7 @@ import javax.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
+import open.gallery.newjeans.common.BaseEntity;
 
 @Builder(access = PRIVATE)
 @AllArgsConstructor(access = PRIVATE)
@@ -28,7 +29,7 @@ import lombok.NoArgsConstructor;
         )
     }
 )
-public class ImageTagMap {
+public class ImageTagMap extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
